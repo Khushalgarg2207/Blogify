@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head') %>
+        <title>Blogify</title>
+        <style>
+            .fixed-preview-img {
+                width: 250px;
+                height: 250px;
+                object-fit: cover;
+                border-radius: 8px;
+            }
+
+            .card {
+                transition:
+                    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+                    background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+                background-color: #fff;
+            }
+
+            .card:hover {
+                transform: scale(1.05);
+                background-color: #f0f8ff;
+                z-index: 2;
+            }
+        </style>
+</head>
+
+<body>
+    <%- include('./partials/nav') %>
+        <div class="container mt-3">
+            <div class="row row-cols-3">
+                <% blogs.forEach(blog=> { %>
+                    <div class="col mb-4">
+                        <div class="card" style="width: 18rem;">
+                            <img src="/<%= blog.coverImageURL && blog.coverImageURL.trim() !== '' ? blog.coverImageURL : 'images/default.jpg' %>"
+                                class="card-img-top fixed-preview-img" alt="Preview Image"
+                                onerror="this.onerror=null;this.src='/images/default.jpg';" />
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= blog.title %>
+                                </h5>
+                                <a href="/blog/<%= blog._id %>" class="btn btn-primary">View</a>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+            </div>
+        </div>
+        <%- include('./partials/scripts') %>
+</body>
+
+</html>
