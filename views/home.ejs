@@ -40,7 +40,7 @@
       <% blogs.forEach(blog => { %>
         <div class="col">
           <div class="card h-100 shadow-sm border-0 rounded-4">
-            <img src="/<%= blog.coverImageURL && blog.coverImageURL.trim() !== '' ? blog.coverImageURL : 'images/default.jpg' %>"
+            <img src="/public/uploads<%= blog.coverImageURL && blog.coverImageURL.trim() !== '' ? blog.coverImageURL : 'images/user_avt.jpg' %>"
               class="fixed-preview-img"
               alt="Preview Image"
               onerror="this.onerror=null;this.src='/images/default.jpg';" />
@@ -49,7 +49,7 @@
                 <%= blog.title %>
               </h5>
               <div class="author-info text-muted">
-                <img src="<%= blog.createdBy && blog.createdBy.profileImageURL ? blog.createdBy.profileImageURL : '/images/default-profile.png' %>" alt="Author">
+                <img src="/public/uploads/<%= blog.createdBy && blog.createdBy.profileImageURL ? blog.createdBy.profileImageURL : '/images/user_avt.png' %>" alt="Author">
                 <small>By <%= blog.createdBy ? blog.createdBy.fullName : "Anonymous" %></small>
               </div>
               <div class="mt-3">
